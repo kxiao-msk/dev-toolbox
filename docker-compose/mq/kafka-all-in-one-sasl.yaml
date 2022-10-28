@@ -35,7 +35,7 @@ services:
       ZOOKEEPER_AUTHPROVIDER.SASL: org.apache.zookeeper.server.auth.SASLAuthenticationProvider
       KAFKA_OPTS: -Djava.security.auth.login.config=/etc/kafka/secrets/zk_server_jaas.conf
     volumes:
-      - ~/Workspace/docker-compose/mq/config:/etc/kafka/secrets
+      - ~/Workspace/Toolbox/dev-toolbox/docker-compose/mq/config:/etc/kafka/secrets
 
   kafka:
     image: confluentinc/cp-kafka:7.2.2
@@ -64,7 +64,7 @@ services:
       KAFKA_BROKER_ID: 1
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
     volumes:
-      - ~/Workspace/docker-compose/mq/config:/etc/kafka/secrets
+      - ~/Workspace/Toolbox/dev-toolbox/docker-compose/mq/config:/etc/kafka/secrets
 
   schemaregistry:
     image: confluentinc/cp-schema-registry:5.5.0
