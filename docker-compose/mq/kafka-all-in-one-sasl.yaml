@@ -23,7 +23,7 @@ services:
       KAFKA_CLUSTERS_0_PROPERTIES_SASL_JAAS_CONFIG: 'org.apache.kafka.common.security.plain.PlainLoginModule required username="admin" password="admin-secret";'
   
   zookeeper:
-    image: confluentinc/cp-zookeeper:5.2.4
+    image: confluentinc/cp-zookeeper:7.2.2
     ports:
       - 2181:2181
     environment:
@@ -38,7 +38,7 @@ services:
       - ~/Workspace/docker-compose/mq/config:/etc/kafka/secrets
 
   kafka:
-    image: confluentinc/cp-kafka:5.3.1
+    image: confluentinc/cp-kafka:7.2.2
     hostname: kafka
     container_name: kafka
     depends_on:
@@ -57,7 +57,7 @@ services:
       KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: INTERNAL:SASL_PLAINTEXT,EXTERNAL_HOST:SASL_PLAINTEXT
       KAFKA_AUTO_CREATE_TOPICS_ENABLE: true
       KAFKA_ALLOW_PLAINTEXT_LISTENER: yes
-      KAFKA_AUTHORIZER_CLASS_NAME: kafka.security.auth.SimpleAclAuthorizer
+      KAFKA_AUTHORIZER_CLASS_NAME: kafka.security.authorizer.AclAuthorizer
       KAFKA_OPTS: "-Djava.security.auth.login.config=/etc/kafka/secrets/kafka_server_jaas.conf"
       KAFKA_SUPER_USERS: User:admin,User:alice
       KAFKA_ALLOW_EVERYONE_IF_NO_ACL_FOUND: true
